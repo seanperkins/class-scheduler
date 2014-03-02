@@ -7,15 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 teachers = [
-  {first_name: 'lin', last_name: 'qiu', subject: 'math'},
-  {first_name: 'sean', last_name: 'perkins', subject: 'ela'},
-  {first_name: 'chris', last_name: 'garson', subject: 'fun'},
-  {first_name: 'aaron', last_name: 'eckhart', subject: 'science'},
-  {first_name: 'david', last_name: 'ferris', subject: 'journalism'},
-  {first_name: 'john', last_name: 'Doe', subject: 'social studies'},
-  {first_name: 'Sarah', last_name: 'Dern', subject: 'math'},
-  {first_name: 'Evan', last_name: 'Garson', subject: 'math'},
-  {first_name: 'Jane', last_name: 'Doe', subject: 'Nothing'}
+  {first_name: 'lin', last_name: 'qiu', subject: 'FLES'},
+  {first_name: 'sean', last_name: 'perkins', subject: 'Art'},
+  {first_name: 'chris', last_name: 'garson', subject: 'Art'},
+  {first_name: 'aaron', last_name: 'eckhart', subject: 'PE'},
+  {first_name: 'david', last_name: 'ferris', subject: 'PE'},
+  {first_name: 'john', last_name: 'Doe', subject: 'Music'},
+  {first_name: 'Sarah', last_name: 'Dern', subject: 'Music'},
+  {first_name: 'Evan', last_name: 'Garson', subject: 'FLES'}
 ]
 puts '--Creating teachers out of bits and bytes'
 tcount = 0
@@ -27,16 +26,16 @@ puts "Created #{tcount} teachers"
 
 puts '--Creating student groups from pieces and parts'
 student_groups = [
-  {description: 'A', grade: 'K'},
-  {description: 'B', grade: 'K'},
-  {description: 'C', grade: 'K'},
-  {description: 'A', grade: '1'},
-  {description: 'B', grade: '1'},
-  {description: 'A', grade: '2'},
-  {description: 'A', grade: '3'},
-  {description: 'A', grade: '4'},
-  {description: 'A', grade: '5'},
-  {description: 'B', grade: '5'},
+  {description: 'pre K angels', grade: 'preK'},
+  {description: 'pre K hellions', grade: 'preK'},
+  {description: 'Kindergarden Cops', grade: 'K'},
+  {description: 'Who is your Daddy and what does he do?', grade: 'K'},
+  {description: 'Grade One-derfuls', grade: '1'},
+  {description: 'Grade One and Only', grade: '1'},
+  {description: 'Grade tworrific', grade: '2'},
+  {description: 'Grade twos clues', grade: '2'},
+  {description: 'Grade Threetings', grade: '3'},
+  {description: 'Service Threes', grade: '3'},
 ]
 sgcount = 0
 student_groups.each do |sg|
