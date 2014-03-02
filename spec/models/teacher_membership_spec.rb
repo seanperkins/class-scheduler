@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe TeacherMembership do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:block) }
+  it { should belong_to(:teacher) }
 end
