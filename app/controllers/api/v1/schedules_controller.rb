@@ -20,7 +20,7 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   #
 
   def create
-    @schedule = Schedule.create name: 'New Schedule'
+    @schedule = Schedule.create( name: 'New Schedule' )
 
     render json: @schedule.as_json
   end
@@ -32,9 +32,38 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   #
   # <code>PUT /api/v1/schedules/:id</code>
   #
-
-
+  #   {
+  #     "schedule": {
+  #         "blocks": [
+  #             {
+  #                 "schedule_id": 1,
+  #                 "start_time": 0,
+  #                 "duration": 3,
+  #                 "teacher_ids": [
+  #                     1,
+  #                     2,
+  #                     3
+  #                 ],
+  #                 "student_group_ids": [
+  #                     1,
+  #                     2,
+  #                     3
+  #                 ]
+  #             }
+  #         ]
+  #     }
+  # }
   def update
     @schedule = Schedule.find(params[:id])
+    binding.pry
+    @schedule.update_attributes!( schedule_params )
+
+    render json: @schedule.as_json
+  end
+
+  private
+
+  def schedule_params
+    params.require(:schedule).permit(:blocks)
   end
 end

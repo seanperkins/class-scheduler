@@ -31,5 +31,6 @@ class Block < ActiveRecord::Base
       return 'Thursday'
     when 149..185
       return 'Friday'
+    end
   end
 end
