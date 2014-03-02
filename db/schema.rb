@@ -11,17 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301231939) do
+ActiveRecord::Schema.define(version: 20140302033555) do
 
   create_table "blocks", force: true do |t|
     t.integer  "schedule_id"
     t.integer  "duration"
-    t.string   "day"
     t.integer  "start_time"
-    t.integer  "end_time"
-    t.boolean  "immutable"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "schedules", force: true do |t|
