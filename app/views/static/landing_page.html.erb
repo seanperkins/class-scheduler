@@ -3,8 +3,13 @@
   <div class="col-md-2">
     Sidebar
   </div>
-  <div class="col-md-8">
-    Calendar
+  <div class="col-md-8 calendar">
+    <div ng-repeat="day in calendar" class="day">
+      {{day.title}}
+      <div ng-repeat="slot in day.slots" class="slot">
+        {{slot.startTime}}
+      </div>
+    </div>
   </div>
   <div class="col-md-2">
     <ul ui-sortable="sortableOptions" ng-model="list" class="list">
