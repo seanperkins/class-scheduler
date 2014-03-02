@@ -1,6 +1,7 @@
 (function() {'use strict';
 angular.module('schedulerApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', 'schedule', 'teachers', 'student_groups',
+              function ($scope, schedule, teachers, student_groups) {
     var calendar = [];
     _.each(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], function(day) {
       var slots = [];
@@ -46,5 +47,9 @@ angular.module('schedulerApp')
         });
       }
     };
-  });
+
+    teachers.fetch().then(function(response) {
+      debugger;
+    });
+  }]);
 }());
