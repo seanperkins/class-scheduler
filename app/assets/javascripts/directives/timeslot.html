@@ -1,4 +1,4 @@
-<div class="slot">
+<div class="slot" ng-class="{ occupied: data.teacher !== undefined }">
   <span class="start_time">{{data.startTime}}</span>
   <span class="teacher_name">{{data.teacher.first_name}} {{data.teacher.last_name}}</span>
   <span class="subject">{{data.teacher.subject}}</span>
