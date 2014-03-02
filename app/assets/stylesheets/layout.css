@@ -1,0 +1,9 @@
+.day {
+  float: left;
+  width: 20%;
+}
+
+.slot {
+  height: 40px;
+  border: 1px solid grey;
+}
