@@ -48,4 +48,7 @@ group :development, :test do
   gem "meta_request"
   gem 'capybara'
   gem 'pry'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'pry-debugger'
 end
