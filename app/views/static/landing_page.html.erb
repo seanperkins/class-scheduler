@@ -15,10 +15,7 @@
   <div class="col-md-8 schedule">
     <div ng-repeat="day in days" class="day">
       {{day}}
-      <div ng-repeat="slot in schedule | filter:day" class="slot" ng-style="slot.style">
-        {{slot.startTime}}
-        <span style="display:none" class="slot_id">{{slot.id}}</span>
-      </div>
+      <div cs-time-slot ng-repeat="slot in schedule | filter:day" slot="slot" dragging="dragging"></div>
     </div>
   </div>
   <div class="col-md-2">

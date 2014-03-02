@@ -1,11 +1,11 @@
 class Api::V1::SchedulesController < Api::V1::ApiController
 
   #
-  # Gets a list of teachers
+  # Gets a list of schedules
   #
   # == Endpoint
   #
-  # <code>GET /api/v1/teachers</code>
+  # <code>GET /api/v1/schedules</code>
   #
   def show
     render json: Schedule.find(params[:id]).as_json
