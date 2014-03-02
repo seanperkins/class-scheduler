@@ -1,21 +1,31 @@
-//colors
+//colors=======================================
 $plum: #824494
 $mauve: #A37DB2
 $forest: #1E807C
 $teal: #50B3A7
 $grey: #EBEBEB
+$white: #ffffff
 
-//typography
 
+//typography=======================================
+$extrasmall:.667em
+$small:.83em
+$normal: 1em
+$large: 1.25em
+$extralarge: 1.5em
+
+//days=======================================
 .day 
 	float: left
 	width: 20%
+	font-size: $small
+	color: $plum
 
-//student groups
+//student groups=============================
 .student_group.selected
 	font-weight: bold
 
-//time slots
+//time slots=======================================
 ul
 	list-style: none
 .slot 
@@ -26,11 +36,33 @@ ul
 	min-height: 80px
 	min-width: 160px
 	transition: all 0.45s ease
-	font-size: .65em
+	font-size: $extrasmall
 	color: $plum
 	&:hover
 		background-color: $mauve
-		color: white
+		color: $white
+
+
+//teacher bloc=======================================
+.header
+	font-size: $small
+	color: $plum
+
+.teacher
+	background-color: $teal
+	padding: 5px
+
+//Name (teacher name)-----
+.name	
+	font-size: $large
+	color: $white
+
+//Name (subject they teach i.e english)-----
+.subject	
+	font-size: $small
+	color: $forest
+
+
 
 .slot.dragover
 	border: 2px solid red
