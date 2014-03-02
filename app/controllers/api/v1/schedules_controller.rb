@@ -36,7 +36,7 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   #     "schedule": {
   #         "blocks": [
   #             {
-  #                 "schedule_id": 1,
+  #                 "id": 1,
   #                 "start_time": 0,
   #                 "duration": 3,
   #                 "teacher_ids": [
@@ -55,15 +55,21 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   # }
   def update
     @schedule = Schedule.find(params[:id])
-    binding.pry
+
+    # Strong params does not like blocks
+    params[:schedule][:blocks_attributes] = params[:schedule].delete(:blocks)
+
     @schedule.update_attributes!( schedule_params )
 
-    render json: @schedule.as_json
+    render json: @schedule.as_json(include: :blocks)
   end
 
   private
 
   def schedule_params
-    params.require(:schedule).permit(:blocks)
+    params.require(:schedule).permit(
+      :id,
+      :name,
+      :blocks_attributes=>[ :id,:start_time, :duration, :teacher_ids=>[],:student_group_ids=>[] ])
   end
 end
