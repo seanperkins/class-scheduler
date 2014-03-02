@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe StudentGroup do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:student_group_memberships) }
+  it { should have_many(:blocks) }
 end
