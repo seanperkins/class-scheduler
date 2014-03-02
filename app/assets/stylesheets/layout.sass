@@ -1,10 +1,16 @@
+body
+	-webkit-font-smoothing: antialiased
+	text-rendering: optimizeLegibility
+	margin-right: 50px
+	margin-top: 40px
+
 //colors=======================================
 $plum: #824494
 $mauve: #A37DB2
 $forest: #1E807C
 $teal: #50B3A7
-$grey: #EBEBEB
-$white: #ffffff
+$grey: #eee
+$white: #fff
 
 
 //typography=======================================
@@ -13,6 +19,7 @@ $small:.83em
 $normal: 1em
 $large: 1.25em
 $extralarge: 1.5em
+$xxl: 1.75em
 
 //days=======================================
 .day 
@@ -21,26 +28,10 @@ $extralarge: 1.5em
 	font-size: $small
 	color: $plum
 
+
 //student groups=============================
 .student_group.selected
 	font-weight: bold
-
-//time slots=======================================
-ul
-	list-style: none
-.slot 
-	height: 40px
-	border: 8px solid  #fff
-	background-color: $grey
-	padding: 5px
-	min-height: 80px
-	min-width: 160px
-	transition: all 0.45s ease
-	font-size: $extrasmall
-	color: $plum
-	&:hover
-		background-color: $mauve
-		color: $white
 
 
 //teacher bloc=======================================
@@ -48,9 +39,18 @@ ul
 	font-size: $small
 	color: $plum
 
+.teachers
+	float:left
+	padding: 5px 0 0 0
+
 .teacher
+	float: left
+	margin-bottom: 10px
 	background-color: $teal
-	padding: 5px
+	padding: 5px 10px
+	min-width: 200px
+	text-align: center
+
 
 //Name (teacher name)-----
 .name	
@@ -63,6 +63,52 @@ ul
 	color: $forest
 
 
+//time slots=======================================
+ul
+	list-style: none
+.slot 
+	height: 50px
+	border: 8px solid  #fff
+	background-color: $grey
+	padding: 5px
+	min-height: 80px
+	min-width: 160px
+	transition: all 0.45s ease
+	&:hover
+		background-color: $mauve
+	&:hover .start_time	
+		color: $white
 
 .slot.dragover
-	border: 2px solid red
+	border: 4px solid $white
+
+.start_time
+	color: $mauve
+	float: left
+
+
+//Occupied Time Slots=======================================
+.teacher_name
+	color: $white
+	font-size: $extralarge
+	float: left
+	width: 100%
+	margin: -4px auto -3px auto
+	text-align: center
+
+.slot .subject 
+	font-size: $normal	
+	float: left
+	text-align: center
+	width: 100%
+	margin: 0 auto
+	transition: all 0.45s ease
+
+.occupied
+	background-color: $teal
+	&:hover
+		background-color: $forest
+	&:hover .subject
+		color: $white
+	.start_time
+		color: $white	
