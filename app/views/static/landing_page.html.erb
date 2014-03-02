@@ -1,19 +1,34 @@
+<script>
+  window.API_URL = '<%= ENV['API_URL'] %>';
+</script>
 <div ng-controller="MainCtrl" class="container">
 <div class="row">
   <div class="col-md-2">
-    Sidebar
+    <span class="header">Student Groups</span>
+    <li ng-repeat="student_group in student_groups">
+      <a href="javascript:void(0)" ng-click="">
+        <span class="grade">{{student_group.grade}}</span>
+        <span class="description">{{student_group.description}}</span>
+      </a>
+    </li>
   </div>
-  <div class="col-md-8 calendar">
-    <div ng-repeat="day in calendar" class="day">
-      {{day.title}}
-      <div ng-repeat="slot in day.slots" class="slot">
+  <div class="col-md-8 schedule">
+    <div ng-repeat="day in days" class="day">
+      {{day}}
+      <div ng-repeat="slot in schedule | filter:day" class="slot" ng-style="slot.style">
         {{slot.startTime}}
+        <span style="display:none" class="slot_id">{{slot.id}}</span>
       </div>
     </div>
   </div>
   <div class="col-md-2">
+    <span class="header">Teachers</span>
     <ul ui-sortable="sortableOptions" ng-model="teachers" class="teachers">
-      <li ng-repeat="teacher in teachers">{{teacher.firstname}} {{teacher.lastname}}</li>
+      <li ng-repeat="teacher in teachers">
+        <span class="name">{{teacher.first_name}} {{teacher.last_name}}</span>
+        <br />
+        <span class="subject">{{teacher.subject}}</span>
+      </li>
     </ul>
   </div>  
 </div>

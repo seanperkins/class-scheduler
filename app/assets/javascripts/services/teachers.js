@@ -1,9 +1,9 @@
 (function() {'use strict';
   angular.module('schedulerApp').
-    factory('teachers', ['$http', function($http) {
+    factory('teachers', ['$http', '$window', function($http, $window) {
       return {
-        fetch: function(id) {
-          return $http.get('http://0.0.0.0:3000/api/v1/teachers');
+        fetch: function() {
+          return $http.get($window.API_URL+'teachers');
         }
       };
     }]);
