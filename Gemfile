@@ -40,8 +40,8 @@ gem "angularjs-rails"
 
 # Rails server
 gem "unicorn"
-
 group :development, :test do
+  gem 'dotenv-rails' # uses .env file in root directory for ENV vars
   gem "rspec-rails"
   gem "better_errors"
   gem "binding_of_caller"

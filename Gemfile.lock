@@ -58,6 +58,9 @@ GEM
       sass (~> 3.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    dotenv (0.10.0)
+    dotenv-rails (0.10.0)
+      dotenv (= 0.10.0)
     erubis (2.7.0)
     execjs (2.0.2)
     fssm (0.2.10)
@@ -168,6 +171,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   compass
+  dotenv-rails
   jquery-rails
   jquery-ui-rails (= 4.2.0)
   meta_request
