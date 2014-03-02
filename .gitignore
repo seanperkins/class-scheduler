@@ -13,6 +13,10 @@ capybara-*.html
 .rvmrc
 /.bundle
 
+# Ignore rvm stuff
+.ruby-gemset
+.ruby-version
+
 # Ignore the default SQLite database.
 /vendor/bundle
 /log/*

@@ -1,6 +1,15 @@
-<div class="row-fluid">
-  <div ng-controller="ScheduleAppCtrl">
-    <h1>hello!</h1>
-    <h3>{{ words }}</h3>
+<div ng-controller="MainCtrl" class="container">
+<div class="row">
+  <div class="col-md-2">
+    Sidebar
   </div>
+  <div class="col-md-8">
+    Calendar
+  </div>
+  <div class="col-md-2">
+    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+      <li ng-repeat="item in list" class="item">{{item.text}}</li>
+    </ul>
+  </div>  
+</div>
 </div>

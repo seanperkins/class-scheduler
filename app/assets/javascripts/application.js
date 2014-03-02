@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require jquery.ui.all
+//= require bootstrap
 //= require angular
+//= require angular-route
+//= require angular-sanitize
 //= require angular-animate
 //= require angular-resource
 //= require turbolinks
