@@ -63,9 +63,6 @@ GEM
     fssm (0.2.10)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (1.5.3)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -152,8 +149,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.1)
-      coffee-rails
     tzinfo (0.3.38)
     unicorn (4.8.2)
       kgio (~> 2.6)
@@ -173,7 +168,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   compass
-  jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails (= 4.2.0)
   meta_request
@@ -183,5 +177,4 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
-  turbolinks
   unicorn
