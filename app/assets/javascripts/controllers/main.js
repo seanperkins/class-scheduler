@@ -24,18 +24,7 @@ angular.module('schedulerApp')
     });
 
     $scope.calendar = calendar;
-
-    var tmpList = [];
-
-    for (var i = 1; i <= 6; i++){
-      tmpList.push({
-        text: 'Item ' + i,
-        value: i
-      });
-    }
-
-    $scope.list = tmpList;
-    
+        
     $scope.sortableOptions = {
       stop: function(e, ui) {
         console.log(ui.offset.top+' '+ui.offset.left);
@@ -49,7 +38,7 @@ angular.module('schedulerApp')
     };
 
     teachers.fetch().then(function(response) {
-      debugger;
+      $scope.teachers = response.data.teachers;
     });
   }]);
 }());

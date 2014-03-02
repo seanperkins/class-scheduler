@@ -12,8 +12,8 @@
     </div>
   </div>
   <div class="col-md-2">
-    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
-      <li ng-repeat="item in list" class="item">{{item.text}}</li>
+    <ul ui-sortable="sortableOptions" ng-model="teachers" class="teachers">
+      <li ng-repeat="teacher in teachers">{{teacher.firstname}} {{teacher.lastname}}</li>
     </ul>
   </div>  
 </div>
