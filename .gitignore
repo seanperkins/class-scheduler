@@ -17,6 +17,9 @@ capybara-*.html
 .ruby-gemset
 .ruby-version
 
+# Ignore environmental variables
+.env
+
 # Ignore the default SQLite database.
 /vendor/bundle
 /log/*

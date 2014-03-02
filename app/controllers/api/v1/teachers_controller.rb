@@ -1,7 +1,7 @@
 class Api::V1::TeachersController < Api::V1::ApiController
 
   #
-  # Gets a list of student groups
+  # Gets a list of teachers
   #
   # == Endpoint
   #

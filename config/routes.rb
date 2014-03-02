@@ -13,7 +13,7 @@ ScheduleApp::Application.routes.draw do
       resources 'teachers', only: [:index]
 
       # Schedules resource
-      resources 'schedules', only: [:index, :show, :new, :update]
+      resources 'schedules', only: [:index, :show, :create, :update]
     end
   end
   
