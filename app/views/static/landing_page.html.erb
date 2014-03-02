@@ -12,10 +12,10 @@
       </a>
     </li>
   </div>
-  <div class="col-md-8 schedule">
+  <div class="col-md-8 calendar">
     <div ng-repeat="day in days" class="day">
       {{day}}
-      <div cs-time-slot ng-repeat="slot in schedule | filter:day" slot="slot" dragging="dragging"></div>
+      <div cs-time-slot ng-repeat="slot in calendar | filter:day" slot="slot" dragging="dragging"></div>
     </div>
   </div>
   <div class="col-md-2">
@@ -23,6 +23,7 @@
     <ul ui-sortable="sortableOptions" ng-model="teachers" class="teachers">
       <li ng-repeat="teacher in teachers">
         <span class="name">{{teacher.first_name}} {{teacher.last_name}}</span>
+        <span class="teacher_id" style="display:none">{{teacher.id}}</span>
         <br />
         <span class="subject">{{teacher.subject}}</span>
       </li>

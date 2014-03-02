@@ -8,9 +8,9 @@ angular.module('schedulerApp').
     date.setSeconds(0);
 
     $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    var schedule = [];
+    var calendar = [];
     for (var k = 0; k <= 185; k++) {
-      schedule.push({
+      calendar.push({
         day: $scope.days[Math.floor(k/37)],
         id: k,
         startTime: moment(date).format('h:mm')
@@ -21,7 +21,7 @@ angular.module('schedulerApp').
       } else date.setTime(date.getTime()+600000);
     }
 
-    $scope.schedule = schedule;
+    $scope.calendar = calendar;
 
     $scope.sortableOptions = {
       start: function(e, ui) {
@@ -32,8 +32,23 @@ angular.module('schedulerApp').
         $scope.$apply(function() { $scope.dragging = false; });
 
         _.each($('.slot'), function(slot) {
-          if (ui.offset.top > $(slot).offset().top && ui.offset.top < $(slot).offset().top+$(slot).height() &&
-              ui.offset.left > $(slot).offset().left && ui.offset.left < $(slot).offset().left+$(slot).width()) {
+          if (ui.offset.top > $(slot).offset().top &&
+              ui.offset.top < $(slot).offset().top+$(slot).height() &&
+              ui.offset.left > $(slot).offset().left &&
+              ui.offset.left < $(slot).offset().left+$(slot).width()) {
+            $scope.$apply(function() {
+              var slot_id = parseInt($(slot).find('.slot_id').html(), 10);
+              var data = _.find($scope.calendar, function(data) {
+                return data.id === slot_id;
+              });
+
+              var teacher_id = parseInt(ui.item.find('.teacher_id').html(), 10);
+              var teacher = _.find($scope.teachers, function(teacher) {
+                return teacher.id === teacher_id;
+              });
+
+              data.teacher = teacher;
+            });
           }
         });
       }
