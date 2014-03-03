@@ -48,6 +48,9 @@ angular.module('schedulerApp').
               });
 
               data.teacher = teacher;
+
+              var nextSlot = $scope.calendar[$scope.calendar.indexOf(data)+1];
+              if (nextSlot.day === data.day) nextSlot.teacher = teacher;
             });
           }
         });
