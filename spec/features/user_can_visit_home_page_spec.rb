@@ -6,7 +6,7 @@ describe "An anonymous user" do
     it "should see welcome message" do
       visit "/"
 
-      page.should have_content "hello!"
+      page.should have_content "Calendar"
     end
   end
 end
