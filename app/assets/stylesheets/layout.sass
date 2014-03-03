@@ -30,9 +30,20 @@ $xxl: 1.75em
 
 
 //student groups=============================
-.student_group.selected
-	font-weight: bold
+.student_group a
+	color: $teal
+	font-size: $extralarge
+	&:hover
+		color: $forest 
 
+.student_group.selected a
+	font-weight: bold
+	color: $mauve
+	&:before
+		border-left: thick double #ff0000
+	&:hover
+		color: $plum 
+	
 
 //teacher bloc=======================================
 .header
