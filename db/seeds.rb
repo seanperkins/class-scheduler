@@ -14,7 +14,7 @@ teachers = [
   {first_name: 'david', last_name: 'ferris', subject: 'PE'},
   {first_name: 'john', last_name: 'Doe', subject: 'Music'},
   {first_name: 'Sarah', last_name: 'Dern', subject: 'Music'},
-  {first_name: 'Evan', last_name: 'Garson', subject: 'FLES'}
+  {first_name: 'Evyn', last_name: 'Garson', subject: 'FLES'}
 ]
 puts '--Creating teachers out of bits and bytes'
 tcount = 0
