@@ -63,13 +63,17 @@ angular.module('schedulerApp').
       }
     };
 
-    teachers.fetch().then(function(response) {
+    teachers.fetch().then(function (response) {
       $scope.teachers = response.data.teachers;
     });
 
-    student_groups.fetch().then(function(response) {
+    student_groups.fetch().then(function (response) {
       $scope.student_groups = response.data.student_groups;
       $scope.selected_student_group = $scope.student_groups[0].id;
+    });
+
+    schedules.fetch().then(function (response) {
+      debugger;
     });
   }]);
 }());
