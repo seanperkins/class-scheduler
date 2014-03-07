@@ -5,7 +5,8 @@
         replace: true,
         scope: {
           data: '=slot',
-          dragging: '='
+          dragging: '=',
+          schedule: '='
         },
         templateUrl: '/assets/directives/timeslot.html',
         link: function(scope, elem, attrs) {

@@ -7,21 +7,40 @@ angular.module('schedulerApp').
     date.setMinutes(10);
     date.setSeconds(0);
 
-    $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    var calendar = [];
-    for (var k = 0; k <= 185; k++) {
-      calendar.push({
-        day: $scope.days[Math.floor(k/37)],
-        id: k,
-        startTime: moment(date).format('h:mm')
-      });
-      if ((k+1)%37 === 0) {
-        date.setHours(9);
-        date.setMinutes(10);
-      } else date.setTime(date.getTime()+600000);
-    }
+    $scope.$watch('selected_student_group', function(selected_student_group) {
+      $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+      var calendar = [];
+      for (var k = 0; k <= 185; k++) {
+        calendar.push({
+          day: $scope.days[Math.floor(k/37)],
+          id: k,
+          startTime: moment(date).format('h:mm'),
+          student_group: selected_student_group
+        });
+        if ((k+1)%37 === 0) {
+          date.setHours(9);
+          date.setMinutes(10);
+        } else date.setTime(date.getTime()+600000);
+      }
 
-    $scope.calendar = calendar;
+      $scope.calendar = calendar;
+    });
+
+    $scope.$watchCollection('[schedule, teachers, student_groups]', function(newValues) {
+      if ($scope.schedule !== undefined) {
+        _.each($scope.schedule, function(block) {
+          for (var k = block.start_position; k < block.start_position + block.duration; k++) {
+            var slot = $scope.calendar[k];
+            slot.block = block;
+            if ($scope.teachers !== undefined) {
+              slot.teacher = _.find($scope.teachers, function (teacher) {
+                return _.contains(block.teacher_ids, teacher.id);
+              });
+            }
+          }
+        });
+      }
+    });
 
     $scope.sortableOptions = {
       start: function(e, ui) {
@@ -73,7 +92,12 @@ angular.module('schedulerApp').
     });
 
     schedules.fetch().then(function (response) {
-      debugger;
+      $scope.schedule = [{
+        start_position: 1,
+        duration: 3,
+        teacher_ids: [7],
+        student_group_ids: [4]
+      }];
     });
   }]);
 }());

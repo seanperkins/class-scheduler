@@ -3,7 +3,7 @@
     factory('schedules', ['$http', '$window', function($http, $window) {
       return {
         fetch: function(id) {
-          return $http.get($window.API_URL+'schedules');
+          return $http.get($window.API_URL+'schedules/1');
         }
       };
     }]);

@@ -3,18 +3,19 @@
 </script>
 <div ng-controller="MainCtrl" class="container">
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-sm-2">
     <span class="header">Student Groups</span>
     <ul class="student_groups">
       <li ng-repeat="student_group in student_groups" class="student_group" ng-class="{ selected: selected_student_group === student_group.id }">
         <a href="javascript:void(0)" ng-click="changeGroup(student_group.id)">
           <span class="grade">{{student_group.grade}}</span>
           <span class="description">{{student_group.description}}</span>
+          <span class="student_group_id" style="display:none">{{student_group.id}}</span>
         </a>
       </li>
     </ul>
   </div>
-  <div class="col-md-8 calendar">
+  <div class="col-sm-8 calendar">
     <div class="days_header">
       <span ng-repeat="day in days" class="day">{{day}}</span>
     </div>
@@ -22,7 +23,7 @@
       <div cs-time-slot ng-repeat="slot in calendar | filter:day" slot="slot" dragging="dragging"></div>
     </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-sm-2">
     <span class="header">Teachers</span>
     <ul ui-sortable="sortableOptions" ng-model="teachers" class="teachers">
       <li ng-repeat="teacher in teachers" class="teacher">
@@ -32,6 +33,6 @@
         <span class="subject">{{teacher.subject}}</span>
       </li>
     </ul>
-  </div>  
+  </div>
 </div>
 </div>
