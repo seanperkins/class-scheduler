@@ -1,7 +1,11 @@
 <div class="slot" ng-class="{ occupied: data.teacher !== undefined, first: data.block.start_position === data.id, last: data.block.start_position+data.block.duration-1 === data.id }">
   <span class="start_time">{{data.startTime}}</span>
-  <span class="name" ng-show="data.block.start_position === data.id">{{data.teacher.first_name}} {{data.teacher.last_name}}</span>
-  <span class="subject" ng-show="data.block.start_position === data.id">{{data.teacher.subject}}</span>
+  <span class="name" ng-show="data.block.start_position === data.id">
+    {{data.teacher.first_name}} {{data.teacher.last_name}}
+  </span>
+  <span class="subject" ng-show="data.block.start_position === data.id">
+    {{data.teacher.subject}}
+  </span>
   <span style="display:none" class="teacher_id">{{data.teacher.id}}</span>
   <span style="display:none" class="student_group_id">{{data.student_group.id}}</span>
   <span style="display:none" class="slot_id">{{data.id}}</span>

@@ -88,7 +88,7 @@ angular.module('schedulerApp').
 
     student_groups.fetch().then(function (response) {
       $scope.student_groups = response.data.student_groups;
-      $scope.selected_student_group = $scope.student_groups[0].id;
+      $scope.selected_student_group = $scope.student_groups[0];
     });
 
     schedules.fetch().then(function (response) {
