@@ -10,12 +10,6 @@
         },
         templateUrl: '/assets/directives/timeslot.html',
         link: function(scope, elem, attrs) {
-          // scope.$watch('data.block', function(block) {
-          //   if (typeof(block) !== 'undefined') {
-          //     debugger;
-          //   }
-          // });
-
           scope.$watch('dragging', function(dragging) {
             if (dragging) {
               $('.slot').mouseenter(function(e) {
