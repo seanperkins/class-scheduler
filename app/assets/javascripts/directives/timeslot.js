@@ -26,14 +26,18 @@
           });
 
           elem.mousedown(function(e) {
-            if (elem.children('.teacher_id').html() !== '') {
+            if (scope.data.block !== undefined) {
+              $rootScope.$apply(function() {
+                $rootScope.selectedBlock = scope.data.block;
+                $rootScope.initialStartPosition = scope.data.block.start_position;
+                $rootScope.initialDuration = scope.data.block.duration;
+              });
               scope.startX = e.pageX;
               scope.startY = e.pageY;
               elem.parent().mousemove(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                var slotID = parseInt(elem.children('.slot_id').html(), 10);
-                $rootScope.$emit('resize', scope.data, scope.startX, scope.startY, e.pageY);
+                $rootScope.$emit('resize', scope.startX, scope.startY, e.pageY);
               });
             }
           });
@@ -42,21 +46,22 @@
             elem.parent().unbind('mousemove');
           });
 
-          $rootScope.$on('resize', function(e, startData, startX, startY, currentY) {
-            var slotID = parseInt(elem.children('.slot_id').html(), 10);
+          $rootScope.$on('resize', function(e, startX, startY, currentY) {
             if (startX > $(elem).offset().left &&
-                startX < $(elem).offset().left+$(elem).width()) {
-                if (slotID > startData.id && currentY > startY) {
-                  if (currentY > $(elem).offset().top)
-                    scope.$apply(function() { scope.data.teacher = startData.teacher; });
-                  else if (scope.data.teacher === startData.teacher)
-                    scope.$apply(function() { delete scope.data.teacher; });
-                } else if (slotID < startData.id && currentY < startY) {
-                  if (currentY < $(elem).offset().top + $(elem).height())
-                    scope.$apply(function() { scope.data.teacher = startData.teacher; });
-                  else if (scope.data.teacher === startData.teacher)
-                    scope.$apply(function() { delete scope.data.teacher; });
-                }
+                startX < $(elem).offset().left+$(elem).width() &&
+                currentY > $(elem).offset().top &&
+                currentY < $(elem).offset().top+$(elem).height()) {
+
+                scope.$apply(function() {
+                  if (scope.data.id > $rootScope.initialStartPosition) {
+                    $rootScope.selectedBlock.duration =
+                      scope.data.id-$rootScope.initialStartPosition+1;
+                  } else {
+                    $rootScope.selectedBlock.duration =
+                      $rootScope.initialDuration+$rootScope.initialStartPosition-scope.data.id;
+                    $rootScope.selectedBlock.start_position = scope.data.id;
+                  }
+                });
             }
           });
         }
