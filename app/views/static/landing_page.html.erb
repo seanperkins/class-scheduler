@@ -6,8 +6,8 @@
   <div class="col-sm-2">
     <span class="header">Student Groups</span>
     <ul class="student_groups">
-      <li ng-repeat="student_group in student_groups" class="student_group" ng-class="{ selected: selected_student_group === student_group.id }">
-        <a href="javascript:void(0)" ng-click="changeGroup(student_group.id)">
+      <li ng-repeat="student_group in student_groups" class="student_group" ng-class="{ selected: selected_student_group === student_group }">
+        <a href="javascript:void(0)" ng-click="changeGroup(student_group)">
           <span class="grade">{{student_group.grade}}</span>
           <span class="description">{{student_group.description}}</span>
           <span class="student_group_id" style="display:none">{{student_group.id}}</span>

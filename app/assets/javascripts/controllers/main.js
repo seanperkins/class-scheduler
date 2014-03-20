@@ -26,6 +26,8 @@ angular.module('schedulerApp').
       $scope.calendar = calendar;
     };
 
+    createCalendar();
+
     var resolveBlockConflicts = function(block) {
       if (typeof(block) !== 'undefined') {
         var output = [];
@@ -57,19 +59,22 @@ angular.module('schedulerApp').
       });
 
       _.each($scope.schedule, function(block) {
-        for (var k = block.start_position; k < block.start_position + block.duration; k++) {
-          var slot = $scope.calendar[k];
-          slot.block = block;
-          if ($scope.teachers !== undefined) {
-            slot.teacher = _.find($scope.teachers, function (teacher) {
-              return _.contains(block.teacher_ids, teacher.id);
-            });
+        if ($scope.selected_student_group !== undefined &&
+            _.contains(block.student_group_ids, $scope.selected_student_group.id)) {
+          for (var k = block.start_position; k < block.start_position + block.duration; k++) {
+            var slot = $scope.calendar[k];
+            slot.block = block;
+            if ($scope.teachers !== undefined) {
+              slot.teacher = _.find($scope.teachers, function (teacher) {
+                return _.contains(block.teacher_ids, teacher.id);
+              });
+            }
           }
         }
       });
     };
 
-    $scope.$watch('selected_student_group', createCalendar);
+    $scope.$watch('selected_student_group', updateCalendar);
     $scope.$watchCollection('[teachers, student_groups]', updateCalendar);
     $scope.$watch('schedule', function() {
       if ($scope.schedule !== undefined) {
