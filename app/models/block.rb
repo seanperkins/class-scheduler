@@ -7,10 +7,19 @@ class Block < ActiveRecord::Base
 
   belongs_to :schedule
 
+  before_validation :check_for_overlap, message: "This block overlaps another"
 
   # Calculates when a block ends
   def end_time
     self.start_time + self.duration
+  end
+
+  def occupied_times
+    ot = []
+    self.start_time.upto self.duration do |i|
+      ot << i
+    end
+    return ot
   end
 
   def immutable?
@@ -33,4 +42,24 @@ class Block < ActiveRecord::Base
       return 'Friday'
     end
   end
+
+  private
+    def check_for_overlap
+      if student_groups.present?
+        student_groups.each do |sg|
+          sg.blocks.each do |b|
+            overlap = self.occupied_times & b.occupied_times
+            return false if overlap.length > 0
+          end
+        end
+      end
+      if teachers.present?
+        teachers.each do |t|
+          t.blocks.each do |b|
+            overlap = self.occupied_times & b.occupied_times
+            return false if overlap.length > 0
+          end
+        end
+      end
+    end
 end
