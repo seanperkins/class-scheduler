@@ -1,84 +1,18 @@
 (function() {'use strict';
 angular.module('schedulerApp').
-  controller('MainCtrl', ['$scope', 'schedules', 'teachers', 'student_groups',
-              function ($scope, schedules, teachers, student_groups) {
-    var createCalendar = function() {
-      var date = new Date();
-      date.setHours(9);
-      date.setMinutes(10);
-      date.setSeconds(0);
-
-      $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-      var calendar = [];
-      for (var k = 0; k <= 185; k++) {
-        calendar.push({
-          day: $scope.days[Math.floor(k/37)],
-          id: k,
-          startTime: moment(date).format('h:mm'),
-          student_group: $scope.selected_student_group
-        });
-        if ((k+1)%37 === 0) {
-          date.setHours(9);
-          date.setMinutes(10);
-        } else date.setTime(date.getTime()+600000);
-      }
-
-      $scope.calendar = calendar;
-    };
-
-    createCalendar();
-
-    var resolveBlockConflicts = function(block) {
-      if (typeof(block) !== 'undefined') {
-        var output = [];
-        var slots = [];
-        for (var k = 0; k < block.duration; k++) slots.push(block.start_position+k);
-        _.each($scope.schedule, function(oldBlock) {
-          var oldSlots = [];
-          for (var k = 0; k < oldBlock.duration; k++) oldSlots.push(oldBlock.start_position+k);
-          if (_.intersection(slots, oldSlots).length > 0) {
-            oldSlots = _.filter(oldSlots, function(slot) { return slot < slots[0]; });
-            if (oldSlots.length > 0) {
-              oldBlock.duration = oldSlots.length;
-              output.push(oldBlock);
-            }
-          } else {
-            output.push(oldBlock);
-          }
-        });
-
-        output.push(block);
-        $scope.schedule = output;
-      }
-    };
+  controller('MainCtrl', ['$scope', 'schedules', 'teachers', 'student_groups', 'calendar',
+              function ($scope, schedules, teachers, student_groups, calendar) {
+    $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    $scope.calendar = calendar.create($scope.days);
 
     var updateCalendar = function() {
-      _.each($scope.calendar, function(slot) {
-        delete slot.block;
-        delete slot.teacher;
-      });
-
-      _.each($scope.schedule, function(block) {
-        if ($scope.selected_student_group !== undefined &&
-            _.contains(block.student_group_ids, $scope.selected_student_group.id)) {
-          for (var k = block.start_position; k < block.start_position + block.duration; k++) {
-            var slot = $scope.calendar[k];
-            slot.block = block;
-            if ($scope.teachers !== undefined) {
-              slot.teacher = _.find($scope.teachers, function (teacher) {
-                return _.contains(block.teacher_ids, teacher.id);
-              });
-            }
-          }
-        }
-      });
+      calendar.update($scope.schedule, $scope.selected_student_group, $scope.teachers);
     };
 
     $scope.$watch('selected_student_group', updateCalendar);
     $scope.$watchCollection('[teachers, student_groups]', updateCalendar);
     $scope.$watch('schedule', function() {
       if ($scope.schedule !== undefined) {
-        resolveBlockConflicts();
         updateCalendar();
       }
     }, true);
@@ -109,20 +43,19 @@ angular.module('schedulerApp').
                 start_position: data.id,
                 duration: duration,
                 teacher_ids: [teacher_id],
-                student_group_ids: [$scope.selected_student_group]
+                student_group_ids: [$scope.selected_student_group.id]
               };
 
-              resolveBlockConflicts(block);
-              $scope.schedule.push(block);
+              $scope.schedule = schedules.insertBlock($scope.schedule, block);
             });
           }
         });
       }
     };
 
-    $scope.changeGroup = function (id) {
-      if (id !== $scope.selected_student_group) {
-        $scope.selected_student_group = id;
+    $scope.changeGroup = function (group) {
+      if (group !== $scope.selected_student_group) {
+        $scope.selected_student_group = group;
       }
     };
 
@@ -135,7 +68,7 @@ angular.module('schedulerApp').
       $scope.selected_student_group = $scope.student_groups[0];
     });
 
-    schedules.fetch().then(function (response) {
+    schedules.fetch(SCHEDULE_ID).then(function (response) {
       $scope.schedule = [{
         start_position: 1,
         duration: 3,
