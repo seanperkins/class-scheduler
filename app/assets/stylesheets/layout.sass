@@ -22,7 +22,7 @@ $extralarge: 1.5em
 $xxl: 1.75em
 
 //days=======================================
-.day 
+.day
 	float: left
 	width: 20%
 	font-size: $small
@@ -34,7 +34,7 @@ $xxl: 1.75em
 	color: $teal
 	font-size: $extralarge
 	&:hover
-		color: $forest 
+		color: $forest
 
 .student_group.selected a
 	font-weight: bold
@@ -42,8 +42,8 @@ $xxl: 1.75em
 	&:before
 		border-left: thick double #ff0000
 	&:hover
-		color: $plum 
-	
+		color: $plum
+
 
 //teacher bloc=======================================
 .header
@@ -65,12 +65,12 @@ $xxl: 1.75em
 
 
 //Name (teacher name)-----
-.name	
+.name
 	font-size: $large
 	color: $white
 
 //Name (subject they teach i.e english)-----
-.subject	
+.subject
 	font-size: $small
 	color: $forest
 
@@ -78,7 +78,7 @@ $xxl: 1.75em
 //time slots=======================================
 ul
 	list-style: none
-.slot 
+.slot
 	height: 67px
 	border: 8px solid  #fff
 	background-color: $grey
@@ -87,7 +87,7 @@ ul
 	transition: all 0.45s ease
 	&:hover
 		background-color: $mauve
-	&:hover .start_time	
+	&:hover .start_time
 		color: $white
 		-webkit-font-smoothing: antialiased
 
@@ -100,6 +100,13 @@ ul
 	font-size: $small
 	-webkit-font-smoothing: subpixel-antialiased
 
+.slot.occupied:not(.last)
+	border-bottom: 0
+	padding-bottom: 0
+
+.slot.occupied:not(.first)
+	border-top: 0
+	padding-top: 0
 
 //Occupied Time Slots=======================================
 .slot .name
@@ -110,8 +117,8 @@ ul
 	margin: -9px auto -4px auto
 	text-align: center
 
-.slot .subject 
-	font-size: $normal	
+.slot .subject
+	font-size: $normal
 	float: left
 	text-align: center
 	width: 100%
@@ -125,7 +132,5 @@ ul
 	&:hover .subject
 		color: $white
 	.start_time
-		color: $white	
+		color: $white
 		-webkit-font-smoothing: antialiased
-
-
