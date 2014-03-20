@@ -8,7 +8,7 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   # <code>GET /api/v1/schedules</code>
   #
   def show
-    render json: Schedule.find(params[:id]).as_json
+    render json: Schedule.find(params[:id]).as_json(include: :blocks)
   end
 
   #
