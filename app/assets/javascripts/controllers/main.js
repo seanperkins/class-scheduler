@@ -14,6 +14,7 @@ angular.module('schedulerApp').
     $scope.$watch('schedule', function() {
       if ($scope.schedule !== undefined) {
         updateCalendar();
+        schedules.update(SCHEDULE_ID, $scope.schedule);
       }
     }, true);
 
@@ -69,12 +70,7 @@ angular.module('schedulerApp').
     });
 
     schedules.fetch(SCHEDULE_ID).then(function (response) {
-      $scope.schedule = [{
-        start_position: 1,
-        duration: 3,
-        teacher_ids: [7],
-        student_group_ids: [4]
-      }];
+      $scope.schedule = response.data.blocks;
     });
   }]);
 }());

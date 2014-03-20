@@ -5,6 +5,9 @@
         fetch: function(id) {
           return $http.get($window.API_URL+'schedules/'+id);
         },
+        update: function(id, schedule) {
+          return $http.put($window.API_URL+'schedules/'+id, {params: {schedule: schedule}});
+        },
         insertBlock: function(schedule, block) {
           var output = [];
           var slots = [];
